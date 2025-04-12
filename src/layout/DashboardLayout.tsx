@@ -3,8 +3,11 @@ import logo from "../assets/logo.svg";
 import { navData2 } from "../data/navdata";
 import { Bell, ChevronDown, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useWallet } from "../hooks/useWallet";
+
 export default function DashboardLayout() {
   const navigate = useNavigate();
+  const { walletAddress, connectWallet, disconnectWallet } = useWallet();
 
   const [pageTitle, setPageTitle] = useState<string>("");
   const { pathname } = useLocation();
@@ -14,6 +17,7 @@ export default function DashboardLayout() {
       setPageTitle(activeNavItem.title);
     }
   }, [pathname]);
+
   return (
     <section className="flex justify-start items-start bg-[#6c6868] min-h-screen h-full">
       <nav className="w-fit h-full min-h-screen flex flex-col justify-between items-center p-7 bg-[#0F0F0F]">
@@ -81,9 +85,24 @@ export default function DashboardLayout() {
           <p className="text-white text-[28px]">{pageTitle}</p>
           <div className="flex justify-start items-center gap-6">
             <Bell className="stroke-[#C6C6C6]" />
-            <button className="py-3 px-4 bg-[#1B82E8] rounded-xl text-[#E9E9E9] cursor-pointer">
-              Connect wallet
-            </button>
+            {walletAddress ? (
+              <div
+                onClick={disconnectWallet}
+                className="py-2 px-4 bg-[#1B82E8] rounded-xl text-[#E9E9E9] cursor-pointer hover:bg-[#155fa1] transition-all"
+                title="Click to disconnect wallet"
+              >
+                <p className="text-sm text-white">
+                  {walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}
+                </p>
+              </div>
+            ) : (
+              <button
+                onClick={connectWallet}
+                className="py-3 px-4 bg-[#1B82E8] rounded-xl text-[#E9E9E9] cursor-pointer hover:bg-[#155fa1] transition-all"
+              >
+                Connect wallet
+              </button>
+            )}
           </div>
         </section>
         <section className="w-full h-full bg-[#030303] overflow-y-auto">
