@@ -6,14 +6,12 @@ import { useEffect, useState } from "react";
 export default function DashboardLayout() {
   const navigate = useNavigate();
 
-  const [pageTitle, setPageTitle] = useState<string>("Default Title");
+  const [pageTitle, setPageTitle] = useState<string>("");
   const { pathname } = useLocation();
   useEffect(() => {
     const activeNavItem = navData2.find((item) => item.path === pathname);
     if (activeNavItem) {
       setPageTitle(activeNavItem.title);
-    } else {
-      setPageTitle("Page Not Found");
     }
   }, [pathname]);
   return (
