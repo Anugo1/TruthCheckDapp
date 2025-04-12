@@ -10,7 +10,7 @@ export default function HomeLayout() {
   return (
     <>
       <nav className="w-full py-10 px-6 flex justify-between items-center bg-[#04000B] border-b border-b-[#3B3B3B]">
-        <div className="flex justify-start items-center">
+        <div className="flex justify-start items-center cursor-pointer" onClick={() => navigate("/")}>
           <img src={logo} alt="logo" />
           <p className="text-lg text-purple-50 ">TruthCheck</p>
         </div>

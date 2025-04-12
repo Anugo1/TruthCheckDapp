@@ -1,9 +1,11 @@
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { navData2 } from "../data/navdata";
 import { Bell, ChevronDown, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
 export default function DashboardLayout() {
+  const navigate = useNavigate();
+
   const [pageTitle, setPageTitle] = useState<string>("Default Title");
   const { pathname } = useLocation();
   useEffect(() => {
@@ -18,7 +20,7 @@ export default function DashboardLayout() {
     <section className="flex justify-start items-start bg-[#6c6868] min-h-screen h-full">
       <nav className="w-fit h-full min-h-screen flex flex-col justify-between items-center p-7 bg-[#0F0F0F]">
         <div className="w-full flex flex-col justify-start items-start gap-14">
-          <div className="flex justify-start items-center">
+          <div className="flex justify-start items-center cursor-pointer" onClick={() => navigate("/")}>
             <img src={logo} alt="logo" />
             <p className="text-lg text-purple-50 ">TruthCheck</p>
           </div>
@@ -81,7 +83,7 @@ export default function DashboardLayout() {
           <p className="text-white text-[28px]">{pageTitle}</p>
           <div className="flex justify-start items-center gap-6">
             <Bell className="stroke-[#C6C6C6]" />
-            <button className="py-3 px-4 bg-[#1B82E8] rounded-xl text-[#E9E9E9]">
+            <button className="py-3 px-4 bg-[#1B82E8] rounded-xl text-[#E9E9E9] cursor-pointer">
               Connect wallet
             </button>
           </div>

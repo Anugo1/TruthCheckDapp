@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function QuickCheck() {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleQuickCheck = () => {
-    // Add your quick check logic here
-    navigate("/quick-check/results"); // You'll need to add this route
+    if (searchQuery.trim()) {
+      navigate(`/quick-check/results?query=${encodeURIComponent(searchQuery)}`);
+    }
   };
 
   return (
@@ -25,6 +28,11 @@ export default function QuickCheck() {
             id="search"
             className="w-full bg-transparent outline-none text-base text-white placeholder:text-[#B6B6B6]"
             placeholder="Enter text or URL"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleQuickCheck();
+            }}
           />
           <div className="flex justify-start items-center gap-6">
             <button className="flex justify-start items-center gap-1 bg-[#3A3A3A] border border-[#515151] rounded-md py-1 px-2 cursor-pointer whitespace-nowrap btn-glow btn-glow-white">

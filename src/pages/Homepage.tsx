@@ -1,17 +1,23 @@
+import { useState } from "react";
 import headerImage from "../assets/header.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleVerifyClaim = () => {
-    navigate("/quick-check");
+    if (searchQuery.trim()) {
+      navigate(`/quick-check/results?query=${encodeURIComponent(searchQuery)}`);
+    } else {
+      navigate("/quick-check");
+    }
   };
 
   return (
     <section className="w-full flex flex-col justify-start items-center gap-24 pt-14 relative overflow-hidden">
       <div className="w-full flex flex-col justify-start items-center gap-4 max-w-[1060px] mx-auto">
-        <p className="text-[90px] leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#ECECEC] to-[#8C5BD8] text-center  font-semibold">
+        <p className="text-[90px] leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#ECECEC] to-[#8C5BD8] text-center font-semibold">
           Empowering Nigerians with the Truth
         </p>
         <p className="text-white text-2xl font-medium">
@@ -24,13 +30,18 @@ export default function Homepage() {
             id="message"
             placeholder="Paste a message, link, or describe the claim"
             className="text-base py-5 px-6 placeholder:text-[#BEBEBE] w-full outline-none"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleVerifyClaim();
+            }}
           />
           <button
             type="button"
             onClick={handleVerifyClaim}
             className="py-5 px-10 bg-[#8133F1] whitespace-nowrap text-white text-base font-medium cursor-pointer btn-glow"
           >
-            Verify claim
+            Quick Check
           </button>
         </div>
       </div>
