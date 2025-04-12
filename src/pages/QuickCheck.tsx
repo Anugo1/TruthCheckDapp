@@ -1,4 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 export default function QuickCheck() {
+  const navigate = useNavigate();
+
+  const handleQuickCheck = () => {
+    // Add your quick check logic here
+    navigate("/quick-check/results"); // You'll need to add this route
+  };
+
   return (
     <section className="w-full py-9 px-6 flex flex-col justify-start items-start gap-8">
       <div className="w-full flex flex-col justify-start items-start gap-4 text-[#B6B6B6]">
@@ -18,7 +27,7 @@ export default function QuickCheck() {
             placeholder="Enter text or URL"
           />
           <div className="flex justify-start items-center gap-6">
-            <button className="flex justify-start items-center gap-1 bg-[#3A3A3A] border border-[#515151] rounded-md py-1 px-2 cursor-pointer whitespace-nowrap">
+            <button className="flex justify-start items-center gap-1 bg-[#3A3A3A] border border-[#515151] rounded-md py-1 px-2 cursor-pointer whitespace-nowrap btn-glow btn-glow-white">
               <svg
                 width="13"
                 height="15"
@@ -37,7 +46,10 @@ export default function QuickCheck() {
                 Click to upload screenshot or image
               </p>
             </button>
-            <button className="text-base text-white py-3 px-8 bg-[#8133F1] rounded-xl w-fit whitespace-nowrap">
+            <button 
+              className="text-base text-white py-3 px-8 bg-[#8133F1] rounded-xl w-fit whitespace-nowrap btn-glow"
+              onClick={handleQuickCheck}
+            >
               Quick check
             </button>
           </div>

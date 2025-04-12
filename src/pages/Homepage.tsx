@@ -1,5 +1,13 @@
 import headerImage from "../assets/header.png";
+import { useNavigate } from "react-router-dom";
+
 export default function Homepage() {
+  const navigate = useNavigate();
+
+  const handleVerifyClaim = () => {
+    navigate("/quick-check");
+  };
+
   return (
     <section className="w-full flex flex-col justify-start items-center gap-24 pt-14 relative overflow-hidden">
       <div className="w-full flex flex-col justify-start items-center gap-4 max-w-[1060px] mx-auto">
@@ -19,7 +27,8 @@ export default function Homepage() {
           />
           <button
             type="button"
-            className="py-5 px-10 bg-[#8133F1] whitespace-nowrap text-white text-base font-medium cursor-pointer"
+            onClick={handleVerifyClaim}
+            className="py-5 px-10 bg-[#8133F1] whitespace-nowrap text-white text-base font-medium cursor-pointer btn-glow"
           >
             Verify claim
           </button>

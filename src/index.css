@@ -10,3 +10,22 @@ body{
 @theme{
     --color-purple-50: #EFE6FD;
 }
+
+/* Add these button styles */
+.btn-glow {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-glow:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 15px rgba(129, 51, 241, 0.5);
+}
+
+.btn-glow-blue:hover {
+  box-shadow: 0 0 15px rgba(27, 130, 232, 0.5);
+}
+
+.btn-glow-white:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}

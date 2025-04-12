@@ -11,10 +11,10 @@ export const Dashboard2 = () => {
           Verify and report claims with blockchain-backed trust
         </p>
         <div className="flex justify-center items-center gap-6">
-          <button className="py-4 px-6 rounded-xl cursor-pointer border border-[#6C6C6C] text-[#6C6C6C]">
+          <button className="py-4 px-6 rounded-xl cursor-pointer border border-[#6C6C6C] text-[#6C6C6C] btn-glow btn-glow-white">
             Try quick check
           </button>
-          <button className="py-4 px-6 rounded-xl border border-[#1B82E8] bg-[#1B82E8] text-[#E9E9E9] cursor-pointer">
+          <button className="py-4 px-6 rounded-xl border border-[#1B82E8] bg-[#1B82E8] text-[#E9E9E9] cursor-pointer btn-glow btn-glow-blue">
             Get started
           </button>
         </div>

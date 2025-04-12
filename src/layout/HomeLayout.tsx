@@ -1,10 +1,12 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { navData } from "../data/navdata";
 import { ChevronDown, Globe } from "lucide-react";
 
 export default function HomeLayout() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+
   return (
     <>
       <nav className="w-full py-10 px-6 flex justify-between items-center bg-[#04000B] border-b border-b-[#3B3B3B]">
@@ -31,7 +33,10 @@ export default function HomeLayout() {
             <ChevronDown className="size-4 color-[#E9E9E9]" />
           </button>
         </div>
-        <button className="py-4 px-5 bg-[#1B82E8] rounded-xl text-[#E9E9E9]">
+        <button 
+          onClick={() => navigate("/dashboard")}
+          className="py-4 px-5 bg-[#1B82E8] rounded-xl text-[#E9E9E9] btn-glow btn-glow-blue"
+        >
           Go to dashboard
         </button>
       </nav>

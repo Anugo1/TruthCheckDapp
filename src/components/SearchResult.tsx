@@ -1,10 +1,16 @@
 import { ArrowLeft, ThumbsDown, ThumbsUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { claimData } from "../data/claimsData";
 
 export const SearchResult = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="w-full py-9 px-6 flex flex-col justify-start items-start gap-10">
-      <div className="w-full flex justify-start items-center gap-3 text-[#B78AF7] cursor-pointer">
+      <div 
+        className="w-full flex justify-start items-center gap-3 text-[#B78AF7] cursor-pointer"
+        onClick={() => navigate(-1)}
+      >
         <ArrowLeft />
         <p className="text-base">Back to previous page</p>
       </div>

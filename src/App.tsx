@@ -15,6 +15,7 @@ import {
 import HomeLayout from "./layout/HomeLayout";
 import DashboardLayout from "./layout/DashboardLayout";
 import { Suspense } from "react";
+import { SearchResult } from "./components/SearchResult";
 
 function App() {
   const router = createBrowserRouter(
@@ -37,6 +38,14 @@ function App() {
             element={
               <Suspense fallback={<p>loading...</p>}>
                 <QuickCheckPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="quick-check/results"
+            element={
+              <Suspense fallback={<p>loading...</p>}>
+                <SearchResult />
               </Suspense>
             }
           />

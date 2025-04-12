@@ -102,13 +102,13 @@ export const ReportForm: React.FC<MyComponentProps> = ({
           <div className="w-full flex justify-between items-center">
             <button
               type="button"
-              className="py-3 px-16 bg-[#252525] border border-[#343434] cursor-pointer rounded-xl text-[#909090]"
+              className="py-3 px-16 bg-[#252525] border border-[#343434] cursor-pointer rounded-xl text-[#909090] btn-glow btn-glow-white"
             >
               Discard
             </button>
             <button
               type="button"
-              className="py-3 px-16 bg-[#8133F1] border border-[#8133F1] cursor-pointer rounded-xl text-white"
+              className="py-3 px-16 bg-[#8133F1] border border-[#8133F1] cursor-pointer rounded-xl text-white btn-glow"
               onClick={() => {
                 setIsSuccess(true);
                 setIsOpen(false);

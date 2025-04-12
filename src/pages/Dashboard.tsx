@@ -152,10 +152,10 @@ export default function Dashboard() {
                   </p>
                 </div>
               </div>
-              <button className="w-full text-xl text-[#CEB0FA] rounded-xl bg-[#532C8A] py-4">
+              <button className="w-full text-xl text-[#CEB0FA] rounded-xl bg-[#532C8A] py-4 btn-glow">
                 Run Quick check
               </button>
-              <button className="w-full text-xl text-[#CEB0FA] rounded-xl bg-[#532C8A] py-4">
+              <button className="w-full text-xl text-[#CEB0FA] rounded-xl bg-[#532C8A] py-4 btn-glow">
                 Submit new report
               </button>
             </div>
