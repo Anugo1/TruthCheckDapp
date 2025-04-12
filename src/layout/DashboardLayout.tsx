@@ -4,17 +4,19 @@ import { navData2 } from "../data/navdata";
 import { Bell, ChevronDown, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useWallet } from "../hooks/useWallet";
+import { useTranslation } from "react-i18next";
+import "../i18n"; // Import i18n configuration
 
 export default function DashboardLayout() {
   const navigate = useNavigate();
   const { walletAddress, connectWallet, disconnectWallet } = useWallet();
+  const { t, i18n } = useTranslation();
 
-  const [pageTitle, setPageTitle] = useState<string>("");
   const { pathname } = useLocation();
   useEffect(() => {
     const activeNavItem = navData2.find((item) => item.path === pathname);
     if (activeNavItem) {
-      setPageTitle(activeNavItem.title);
+      document.title = activeNavItem.title; // Optionally set the document title
     }
   }, [pathname]);
 
@@ -25,9 +27,10 @@ export default function DashboardLayout() {
     setLanguageDropdownVisible(!languageDropdownVisible);
   };
 
-  const handleLanguageSelect = (language: string) => {
+  const handleLanguageSelect = (language: string, lngCode: string) => {
     setSelectedLanguage(language);
-    setLanguageDropdownVisible(false); // Close the dropdown after selection
+    i18n.changeLanguage(lngCode); // Change the language
+    setLanguageDropdownVisible(false); // Close the dropdown
   };
 
   return (
@@ -65,13 +68,18 @@ export default function DashboardLayout() {
               {languageDropdownVisible && (
                 <div className="absolute top-full left-0 mt-2 w-40 bg-[#1F1F1F] rounded-lg shadow-lg z-10">
                   <ul className="flex flex-col">
-                    {["English", "Igbo", "Yoruba", "Hausa"].map((language) => (
+                    {[
+                      { name: "English", code: "en" },
+                      { name: "Igbo", code: "ig" },
+                      { name: "Yoruba", code: "yo" },
+                      { name: "Hausa", code: "ha" }
+                    ].map((language) => (
                       <li
-                        key={language}
-                        onClick={() => handleLanguageSelect(language)}
+                        key={language.code}
+                        onClick={() => handleLanguageSelect(language.name, language.code)}
                         className="px-4 py-2 text-[#A0A0A0] hover:bg-[#3B3B3B] cursor-pointer"
                       >
-                        {language}
+                        {language.name}
                       </li>
                     ))}
                   </ul>
@@ -114,7 +122,7 @@ export default function DashboardLayout() {
       </nav>
       <section className="w-full flex flex-col justify-start items-start bg-[#030303] h-screen">
         <section className="w-full px-6 py-7 flex justify-between items-center border-b border-b-[#3B3B3B]">
-          <p className="text-white text-[28px]">{pageTitle}</p>
+          <p className="text-white text-[28px]">{t("dashboard")}</p>
           <div className="flex justify-start items-center gap-6">
             <Bell className="stroke-[#C6C6C6]" />
             {walletAddress ? (
@@ -132,7 +140,7 @@ export default function DashboardLayout() {
                 onClick={connectWallet}
                 className="py-3 px-4 bg-[#1B82E8] rounded-xl text-[#E9E9E9] cursor-pointer hover:bg-[#155fa1] transition-all"
               >
-                Connect wallet
+                {t("connect_wallet")}
               </button>
             )}
           </div>
