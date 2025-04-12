@@ -18,6 +18,18 @@ export default function DashboardLayout() {
     }
   }, [pathname]);
 
+  const [languageDropdownVisible, setLanguageDropdownVisible] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("English");
+
+  const toggleLanguageDropdown = () => {
+    setLanguageDropdownVisible(!languageDropdownVisible);
+  };
+
+  const handleLanguageSelect = (language: string) => {
+    setSelectedLanguage(language);
+    setLanguageDropdownVisible(false); // Close the dropdown after selection
+  };
+
   return (
     <section className="flex justify-start items-start bg-[#6c6868] min-h-screen h-full">
       <nav className="w-fit h-full min-h-screen flex flex-col justify-between items-center p-7 bg-[#0F0F0F]">
@@ -41,11 +53,31 @@ export default function DashboardLayout() {
                 <p>{data.title}</p>
               </NavLink>
             ))}
-            <button className="flex justify-start items-center gap-2 text-base text-[#A0A0A0] cursor-pointer ">
-              <Globe className="size-4 stroke-[#A0A0A0]" />
-              <p>Language</p>
-              <ChevronDown className="size-4 stroke-[#A0A0A0]" />
-            </button>
+            <div className="relative">
+              <button
+                onClick={toggleLanguageDropdown}
+                className="flex justify-start items-center gap-2 text-base text-[#A0A0A0] cursor-pointer"
+              >
+                <Globe className="size-4 stroke-[#A0A0A0]" />
+                <p>{selectedLanguage}</p>
+                <ChevronDown className="size-4 stroke-[#A0A0A0]" />
+              </button>
+              {languageDropdownVisible && (
+                <div className="absolute top-full left-0 mt-2 w-40 bg-[#1F1F1F] rounded-lg shadow-lg z-10">
+                  <ul className="flex flex-col">
+                    {["English", "Igbo", "Yoruba", "Hausa"].map((language) => (
+                      <li
+                        key={language}
+                        onClick={() => handleLanguageSelect(language)}
+                        className="px-4 py-2 text-[#A0A0A0] hover:bg-[#3B3B3B] cursor-pointer"
+                      >
+                        {language}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <div className="flex justify-center items-center gap-3 border-t border-t-[#292929] py-3.5 px-2">
