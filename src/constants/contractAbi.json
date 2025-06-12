@@ -4,6 +4,7 @@ export const CONTRACT_ABI = [
       "stateMutability": "nonpayable",
       "type": "constructor"
     },
+    
     {
       "inputs": [
         { "internalType": "address", "name": "spender", "type": "address" },
